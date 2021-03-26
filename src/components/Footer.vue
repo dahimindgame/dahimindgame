@@ -64,15 +64,23 @@
     <!-- Copyright -->
     <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       © 2020 Copyright:
-      <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      <a class="text-dark" href="https://dahimindgame.com/">dahimindgame.com</a>
+      <li class="nav-item">
+        <SocialMediaButtons></SocialMediaButtons>
+      </li>
     </div>
     <!-- Copyright -->
+      
   </footer>
 </template>
 
 
 <script>
+  import SocialMediaButtons from "@/components/SocialMediaButtons.vue";
   export default {
+    components: {
+      SocialMediaButtons,
+    },
     name: "Footer",
     props: {
       msg: String,
