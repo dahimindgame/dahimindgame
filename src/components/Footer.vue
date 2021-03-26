@@ -48,6 +48,9 @@
   }
 
   .footer{
-      background-image: linear-gradient(90deg, #2c3e50 ,#bdc3c7);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-image: linear-gradient(90deg, #2c3e50 ,#bdc3c7);
   }
 </style>
