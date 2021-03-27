@@ -9,7 +9,6 @@ import { faTwitter, faFacebook, faYoutube, faInstagram } from '@fortawesome/free
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 library.add(faTwitter, faFacebook, faYoutube, faInstagram);
 
-
 import 'bootstrap';
 import 'popper.js';
 import jQuery from 'jquery';

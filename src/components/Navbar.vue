@@ -21,6 +21,15 @@
               <li class="nav-item">
                   <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Sepetim</a>
               </li>
+              <li class="nav-item">
+                <div class="input-group rounded">
+                  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon" />
+                  <span class="input-group-text border-0" id="search-addon">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+              </li>
           </ul>
       </div>
       <div class="ml-auto">
@@ -76,7 +85,7 @@
   }
 
   .navbar{
-      background-image: linear-gradient(90deg, #2a1b3d ,#d83f87);
+      background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,209,204,1) 50%, rgba(2,0,36,1) 100%);
   }
 
   $shopping-cart-red: #DF0000;
