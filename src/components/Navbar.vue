@@ -1,46 +1,37 @@
 <template>
   <div class="menu-bar">
-    <nav class="navbar navbar-expand-xl navbar navbar-dark bg-dark">
-        <div class="navbar-brand">
-            <img :src="require('../assets/dmg.png')"/>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+          <div class="navbar-nav mr-auto">
+            <SocialMediaButtons></SocialMediaButtons>
+          </div>
+      </div>
+      <div class="mx-auto order-0">
+          <img :src="require('../assets/dmg.png')"/>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Giriş</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"></i> Kayıt Ol</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Sepetim</a>
+              </li>
+          </ul>
+      </div>
+      <div class="ml-auto">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Disabled</a>
-              </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
-            </form>
-              <li class="nav-item">
-                <SocialMediaButtons></SocialMediaButtons>
-              </li>
-            
-        </div>
-    </nav>
-    
+      </div>
+    </nav>  
+
+
+
   </div>
 </template>
 
@@ -85,8 +76,34 @@
   }
 
   .navbar{
-      height: 150px !important;
       background-image: linear-gradient(90deg, #2a1b3d ,#d83f87);
   }
+
+  $shopping-cart-red: #DF0000;
+
+.fa-stack[data-count]:after{
+  position:absolute;
+  right:0%;
+  top:0%;
+  content: attr(data-count);
+  font-size:40%;
+  padding:.6em;
+  border-radius:999px;
+  line-height:.75em;
+  color: white;
+  color:$shopping-cart-red;
+  text-align:center;
+  min-width:2em;
+  font-weight:bold;
+  background: white;
+  border-style:solid;
+}
+.fa-circle {
+  color:#DF0000;
+}
+
+.red-cart {
+	color: #DF0000; background:white;
+}
 
 </style>
