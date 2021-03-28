@@ -12,13 +12,13 @@
       </div>
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Giriş</a>
+              <li class="nav-item azure">
+                  <a class="nav-link" data-toggle="modal" data-target="#login" href="#"><i class="fa fa-sign-in-alt" aria-hidden="true"></i> Giriş</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item azure">
                   <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"></i> Kayıt Ol</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item azure">
                   <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Sepetim</a>
               </li>
               <li class="nav-item">
@@ -85,7 +85,7 @@
   }
 
   .navbar{
-      background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,209,204,1) 50%, rgba(2,0,36,1) 100%);
+    background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,209,204,1) 50%, rgba(2,0,36,1) 100%);
   }
 
   $shopping-cart-red: #DF0000;
@@ -113,6 +113,10 @@
 
 .red-cart {
 	color: #DF0000; background:white;
+}
+
+li.nav-item.azure .fa {
+	color: azure;
 }
 
 </style>
