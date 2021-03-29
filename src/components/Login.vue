@@ -55,20 +55,20 @@
 												<form>
 													<div class="input-group mb-3">
 														<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-user"></i></span> </div>
-														<input type="text" name="" class="form-control input_user" value="" placeholder="username"> 
+														<input type="text" v-model="name" class="form-control input_user" value="" placeholder="username"> 
                           </div>
 													<div class="input-group mb-3">
 														<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-key"></i></span> </div>
-														<input type="password" name="" class="form-control input_pass" value="" placeholder="password"> 
+														<input type="password" v-model="password" class="form-control input_pass" value="" placeholder="password"> 
                           </div>
                           <div class="input-group mb-2">
 														<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-at"></i></span> </div>
-														<input type="email" name="" class="form-control input_e-mail" value="" placeholder="email"> 
+														<input type="email" v-model="email" class="form-control input_e-mail" value="" placeholder="email"> 
                           </div>
 													<div class="form-group">
 													</div>
 													<div class="d-flex justify-content-center mt-3 login_container">
-														<button type="button" name="button" class="btn register_btn">Register</button>
+														<button type="button" @click="register" class="btn register_btn">Register</button>
 													</div>
                           <div class="mt-4">
 												    
@@ -89,6 +89,9 @@
 
 
 <script>
+
+  import {fb} from '../firebase';
+
   export default {
     components: {
     },
@@ -96,6 +99,30 @@
     props: {
       msg: String,
     },
+	
+	data(){
+		return{
+			name:"",
+			email:"",
+			password:""
+		}
+	},
+
+	methods: {
+		register: function(){
+			fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+				.catch(function(error) {
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				if (errorCode == 'auth/weak-password') {
+					alert('The password is too weak.');
+				} else {
+					alert(errorMessage);
+				}
+				console.log(error);
+				});
+		}
+	}
   };
 </script>
 
