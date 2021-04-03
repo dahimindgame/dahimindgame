@@ -5,8 +5,14 @@ import Admin from "../views/Admin.vue";
 import About from "../views/About.vue";
 import Overview from "../views/Overview.vue";
 import Products from "../views/Products.vue";
+import {fb} from "../firebase";
 
 Vue.use(VueRouter);
+
+//const currentUser = fb.auth().currentUSer;
+let isAuthenticated = fb.auth().isAuthenticated;
+console.log(isAuthenticated);
+
 
 const router = new VueRouter({
   mode: 'history',
@@ -18,6 +24,7 @@ const router = new VueRouter({
       {
           path : '/admin',
           component : Admin,
+          meta : { requiresAuth: true },
           children:[
               {
                 path : 'overview',
@@ -36,4 +43,17 @@ const router = new VueRouter({
   ]
   });
 
+  router.beforeEach((to, from, next) => {
+    var requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+    var currentUser = fb.auth().currentUser;  
+    if (requiresAuth && !currentUser) {
+      next('/');
+    } else {
+      next();
+    }
+  })
+
+
 export default router;
+
+

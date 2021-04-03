@@ -16,7 +16,7 @@
                   <a class="nav-link" data-toggle="modal" data-target="#login" href="#"><i class="fa fa-sign-in-alt" aria-hidden="true"></i> Giriş</a>
               </li>
               <li class="nav-item azure">
-                  <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"></i> Kayıt Ol</a>
+                  <a class="nav-link" data-toggle="modal" data-target="#loginError" href="#"><i class="fa fa-user" aria-hidden="true"></i> Kayıt Ol</a>
               </li>
               <li class="nav-item azure">
                   <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Sepetim</a>

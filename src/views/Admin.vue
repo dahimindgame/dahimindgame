@@ -309,7 +309,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="#">
+                    <a href="#" @click="logout()">
                         <i class="fa fa-power-off"></i>
                     </a>
                 </div>
@@ -343,7 +343,8 @@
 
 <script>
 
-
+import {fb} from '../firebase';
+ 
 export default {
   name: "Admin",
   components: {
@@ -352,6 +353,13 @@ export default {
   methods:{
     closeSidebar(){
       window.$('.page-wrapper').toggleClass('toggled');
+    },
+    logout: function(){
+        fb.auth().signOut().then( () => {
+            this.$router.replace('/');
+        }).catch((err) => {
+            console.log(err)
+        });
     }
   }
 };

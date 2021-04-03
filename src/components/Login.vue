@@ -1,89 +1,90 @@
 <template>
 	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					<ul class="nav nav-fill nav-pills mb-3" id="pills-tab" role="tablist">
-						<li class="nav-item"> <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a> </li>
-						<li class="nav-item"> <a class="nav-link" id="pills-register-tab" data-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Signup</a> </li>
-					</ul>
-					<div class="tab-content" id="pills-tabContent">
-						<div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
-							<div class="modal-body">
-								<div class="container h-100">
-									<div class="d-flex justify-content-center h-100">
-										<div class="user_card">
-											<div class="d-flex justify-content-center">
-												<div class="brand_logo_container"> <img :src="require('../assets/dmg.png')" /> </div>
-											</div>
-											<div class="d-flex justify-content-center form_container">
-												<form>
-													<div class="input-group mb-3">
-														<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-user"></i></span> </div>
-														<input type="text" name="" class="form-control input_user" value="" placeholder="username"> </div>
-													<div class="input-group mb-2">
-														<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-key"></i></span> </div>
-														<input type="password" name="" class="form-control input_pass" value="" placeholder="password"> </div>
-													<div class="form-group">
-														<div class="custom-control custom-checkbox">
-															<input type="checkbox" class="custom-control-input" id="customControlInline">
-															<label class="custom-control-label" for="customControlInline">Remember me</label>
-														</div>
-													</div>
-													<div class="d-flex justify-content-center mt-3 login_container">
-														<button type="button" name="button" class="btn login_btn">Login</button>
-													</div>
-												</form>
-											</div>
-											<div class="mt-4">
-												<div class="d-flex justify-content-center links"> <a href="#">Forgot your password?</a> </div>
-											</div>
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<ul class="nav nav-fill nav-pills mb-3" id="pills-tab" role="tablist">
+				<li class="nav-item"> <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true" @click="clearLoginValues">Login</a> </li>
+				<li class="nav-item"> <a class="nav-link" id="pills-register-tab" data-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false" @click="clearLoginValues">Signup</a> </li>
+				</ul>
+				<div class="tab-content" id="pills-tabContent">
+				<div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
+					<div class="modal-body">
+						<div class="container h-100">
+							<div class="d-flex justify-content-center h-100">
+							<div class="user_card">
+								<div class="d-flex justify-content-center">
+									<div class="brand_logo_container"> <img :src="require('../assets/dmg.png')" /> </div>
+								</div>
+								<div class="d-flex justify-content-center form_container">
+									<form>
+										<div class="input-group mb-3">
+										<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-at"></i></span> </div>
+										<input type="email" v-model="email" class="form-control input_e-mail" value="" placeholder="email"> 
 										</div>
-									</div>
+										<div class="input-group mb-2">
+										<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-key"></i></span> </div>
+										<input type="password" @keyup.enter="login" v-model="password" class="form-control input_pass" value="" placeholder="password"> 
+										</div>
+										<div class="form-group">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="customControlInline">
+											<label class="custom-control-label" for="customControlInline">Remember me</label>
+										</div>
+										</div>
+										<div class="d-flex justify-content-center mt-3 login_container">
+										<button type="button" @click="login" name="button" class="btn login_btn">Login</button>
+										</div>
+									</form>
+								</div>
+								<div class="mt-4">
+									<div class="d-flex justify-content-center links"> <a href="#">Forgot your password?</a> </div>
 								</div>
 							</div>
-						</div>
-						<div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab">
-							<div class="modal-body">
-								<div class="container h-100">
-									<div class="d-flex justify-content-center h-100">
-										<div class="user_card">
-											<div class="d-flex justify-content-center">
-												<div class="brand_logo_container"> <img :src="require('../assets/dmg.png')" /> </div>
-											</div>
-											<div class="d-flex justify-content-center form_container">
-												<form>
-													<div class="input-group mb-3">
-														<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-user"></i></span> </div>
-														<input type="text" v-model="name" class="form-control input_user" value="" placeholder="username"> 
-                          </div>
-													<div class="input-group mb-3">
-														<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-key"></i></span> </div>
-														<input type="password" v-model="password" class="form-control input_pass" value="" placeholder="password"> 
-                          </div>
-                          <div class="input-group mb-2">
-														<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-at"></i></span> </div>
-														<input type="email" v-model="email" class="form-control input_e-mail" value="" placeholder="email"> 
-                          </div>
-													<div class="form-group">
-													</div>
-													<div class="d-flex justify-content-center mt-3 login_container">
-														<button type="button" @click="register" class="btn register_btn">Register</button>
-													</div>
-                          <div class="mt-4">
-												    
-											    </div>
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab">
+					<div class="modal-body">
+						<div class="container h-100">
+							<div class="d-flex justify-content-center h-100">
+							<div class="user_card">
+								<div class="d-flex justify-content-center">
+									<div class="brand_logo_container"> <img :src="require('../assets/dmg.png')" /> </div>
+								</div>
+								<div class="d-flex justify-content-center form_container">
+									<form>
+										<div class="input-group mb-3">
+										<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-user"></i></span> </div>
+										<input type="text" v-model="name" class="form-control input_user" value="" placeholder="username"> 
+										</div>
+										<div class="input-group mb-3">
+										<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-key"></i></span> </div>
+										<input type="password" v-model="password" class="form-control input_pass" value="" placeholder="password"> 
+										</div>
+										<div class="input-group mb-2">
+										<div class="input-group-append"> <span class="input-group-text"><i class="fas fa-at"></i></span> </div>
+										<input type="email" v-model="email" class="form-control input_e-mail" value="" placeholder="email"> 
+										</div>
+										<div class="form-group">
+										</div>
+										<div class="d-flex justify-content-center mt-3 login_container">
+										<button type="button" @click="register" class="btn register_btn">Register</button>
+										</div>
+										<div class="mt-4">
+										</div>
+									</form>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </template>
 
@@ -111,6 +112,11 @@
 	methods: {
 		register: function(){
 			fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+				.then((user) => {
+					window.$('#login').modal('hide');
+					this.$router.replace('admin');
+					console.log(user)
+				})
 				.catch(function(error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
@@ -121,7 +127,25 @@
 				}
 				console.log(error);
 				});
+		},
+
+		login: function(){
+			fb.auth().signInWithEmailAndPassword(this.email, this.password)
+			.then((user) => {
+				console.log(user)
+				window.$('#login').modal('hide');
+			})
+			.catch(function(error){
+				window.$('#loginError').modal('show');
+				console.log(error);
+			});
+		},
+
+		clearLoginValues(){
+			this.email = "";
+			this.password = "";
 		}
+
 	}
   };
 </script>
@@ -130,8 +154,6 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-
-	/* Coded with love by Mutiullah Samim */
 		body,
 		html {
 			margin: 0;
@@ -157,16 +179,16 @@
 
 		}
 		.brand_logo_container {
-      position: absolute;
-      height: 145px;
-      width: 152px;
-      top: -60px;
-      border-radius: 50%;
-      border-color: #f39c12;
-      border-style: solid;
-      background: #ffffff;
-      padding: 9px;
-      text-align: center;
+			position: absolute;
+			height: 145px;
+			width: 152px;
+			top: -60px;
+			border-radius: 50%;
+			border-color: #f39c12;
+			border-style: solid;
+			background: #ffffff;
+			padding: 9px;
+			text-align: center;
 		}
 		.brand_logo {
 			height: 150px;
