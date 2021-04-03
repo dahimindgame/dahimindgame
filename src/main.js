@@ -13,14 +13,28 @@ import 'bootstrap';
 import 'popper.js';
 import jQuery from 'jquery';
 import './assets/app.scss';
+import {fb} from "./firebase";
+
+
 window.$ = window.jQuery = jQuery;
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 //Vue.component('Navbar', require('./components/Navbar.vue').default);
 Vue.config.productionTip = false;
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+let app = '';
+
+fb.auth().onAuthStateChanged(function(user){
+  console.log(user);
+  if(!app){
+    new Vue({
+      router,
+      store,
+      render: (h) => h(App),
+    }).$mount("#app");
+  }
+}
+
+);
+
+
