@@ -1,10 +1,5 @@
 <template>
   <div id="mySlide" class="carousel slide" data-ride="carousel">
-    <ol class="carousel indicators">
-      <li data-target= "#mySlide" data-slide-to="0" class="active"></li>
-      <li data-target= "#mySlide" data-slide-to="1"></li>
-      <li data-target= "#mySlide" data-slide-to="2"></li>
-    </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="container">
@@ -191,5 +186,12 @@
     padding:46px 0 51px 0;
     height: 32rem;
     position: relative;  
+  }
+
+  .carousel{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50;      
   }
 </style>
