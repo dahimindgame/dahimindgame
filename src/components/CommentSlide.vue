@@ -179,18 +179,12 @@
   .container {
     width: 1170px;
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
     position: absolute;
-    bottom: 50;
     left: 0;
     right: 0;
   }  
 
   .carousel-item{
-    bottom: 0;
     width: 100%;
     background-color: #414e65;
     color:white;
