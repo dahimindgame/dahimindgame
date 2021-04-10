@@ -53,10 +53,4 @@
     width: 100%;
     background-image: linear-gradient(90deg, #2c3e50 ,#bdc3c7);
   }
-
-.nav-item {
-    position: fixed;
-    right: 0;
-    margin: 0 10px;
-}
 </style>
