@@ -11,9 +11,7 @@ Vue.use(VueRouter);
 
 //const currentUser = fb.auth().currentUSer;
 let isAuthenticated = fb.auth().isAuthenticated;
-console.log(isAuthenticated);
-
-
+isAuthenticated;
 const router = new VueRouter({
   mode: 'history',
   routes: [

@@ -1,15 +1,14 @@
 <template>
   <div class="">
     <Navbar></Navbar>
-    <Footer></Footer>
     <Login></Login>
     <LoginError></LoginError>
     <CommentSlide></CommentSlide>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import Login from "@/components/Login.vue";
@@ -23,7 +22,7 @@ export default {
     Footer,
     Login,
     LoginError,
-    CommentSlide
+    CommentSlide,
   },
 };
 </script>
