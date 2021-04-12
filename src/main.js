@@ -15,6 +15,10 @@ import 'popper.js';
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 
+import Carousel3d from 'vue-carousel-3d'
+
+Vue.use(Carousel3d)
+
 import './assets/app.scss';
 import {fb} from "./firebase";
 
