@@ -1,4 +1,5 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase';
+require("firebase/firestore")
 
 
 var firebaseConfig = {
@@ -15,4 +16,8 @@ var firebaseConfig = {
   //firebase.analytics();
   //export const fb = firebase.initializeApp(firebaseConfig);
   
-export const fb = firebase.default.initializeApp(firebaseConfig);
+const fb = firebase.default.initializeApp(firebaseConfig);
+
+const db = firebase.default.firestore();
+
+export{fb,db}
