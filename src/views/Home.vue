@@ -1,8 +1,9 @@
 <template>
-  <div class="">
+  <div class="home">
     <Navbar></Navbar>
     <Login></Login>
     <LoginError></LoginError>
+    <MainSlide></MainSlide>
     <ComSlide></ComSlide>
     <Footer></Footer>
   </div>
@@ -14,6 +15,8 @@ import Footer from "@/components/Footer.vue";
 import Login from "@/components/Login.vue";
 import LoginError from "@/components/LoginError.vue";
 import ComSlide from "@/components/ComSlide.vue";
+import MainSlide from "@/components/MainSlide.vue";
+
 
 export default {
   name: "Home",
@@ -23,6 +26,14 @@ export default {
     Login,
     LoginError,
     ComSlide,
-  },
+    MainSlide
+},
 };
 </script>
+
+<style>
+  .home{
+    background-color: #f0f7fd;
+  }
+</style>
+
