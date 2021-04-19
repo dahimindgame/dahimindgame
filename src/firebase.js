@@ -1,7 +1,6 @@
 import firebase from 'firebase';
 require("firebase/firestore")
 
-
 var firebaseConfig = {
     apiKey: "AIzaSyDjdYlvvZHkFN6ULK3E3BONe5MzpYCgjcg",
     authDomain: "dahimindgame-248fd.firebaseapp.com",

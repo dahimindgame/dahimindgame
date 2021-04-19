@@ -10,8 +10,14 @@
           <a href="#" @click="closeSidebar">pro sidebar</a>
         </div>
         <!-- sidebar-header  -->
-        <div class="sidebar-item sidebar-header d-flex flex-nowrap">
-          <div class="user-pic"></div>
+        <div class="sidebar-item sidebar-header">
+          <div class="user-pic">
+            <img
+              class="img-responsive img-rounded"
+              src="/img/user.png"
+              alt="User picture"
+            />
+          </div>
           <div class="user-info">
             <span class="user-name"
               >Jhon
@@ -45,134 +51,38 @@
         <div class="sidebar-item sidebar-menu">
           <ul>
             <li class="header-menu">
-              <span>General</span>
+              <span>Menu</span>
             </li>
-            <li class="sidebar-dropdown">
+
+            <li>
               <router-link to="/admin/overview">
-                <i class="fa fa-tachometer-alt"></i>
-                <span class="menu-text">Dashboard</span>
-                <span class="badge badge-pill badge-warning">New</span>
-              </router-link>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#"
-                      >Dashboard 1
-                      <span class="badge badge-pill badge-success">Pro</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">Dashboard 2</a>
-                  </li>
-                  <li>
-                    <a href="#">Dashboard 3</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <router-link to="/admin/products">
-                <i class="fa fa-shopping-cart"></i>
-                <span class="menu-text">Products</span>
-                <span class="badge badge-pill badge-danger">3</span>
-              </router-link>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Products </a>
-                  </li>
-                  <li>
-                    <a href="#">Orders</a>
-                  </li>
-                  <li>
-                    <a href="#">Credit cart</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="far fa-gem"></i>
-                <span class="menu-text">Components</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">General</a>
-                  </li>
-                  <li>
-                    <a href="#">Panels</a>
-                  </li>
-                  <li>
-                    <a href="#">Tables</a>
-                  </li>
-                  <li>
-                    <a href="#">Icons</a>
-                  </li>
-                  <li>
-                    <a href="#">Forms</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
                 <i class="fa fa-chart-line"></i>
-                <span class="menu-text">Charts</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Pie chart</a>
-                  </li>
-                  <li>
-                    <a href="#">Line chart</a>
-                  </li>
-                  <li>
-                    <a href="#">Bar chart</a>
-                  </li>
-                  <li>
-                    <a href="#">Histogram</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-globe"></i>
-                <span class="menu-text">Maps</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Google maps</a>
-                  </li>
-                  <li>
-                    <a href="#">Open street map</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="header-menu">
-              <span>Extra</span>
+                <span>Overview</span>
+              </router-link>
             </li>
             <li>
-              <a href="#">
-                <i class="fa fa-book"></i>
-                <span class="menu-text">Documentation</span>
-                <span class="badge badge-pill badge-primary">Beta</span>
-              </a>
+              <router-link to="/admin/products">
+                <i class="fab fa-amazon"></i>
+                <span>Products</span>
+              </router-link>
             </li>
             <li>
-              <a href="#">
-                <i class="fa fa-calendar"></i>
-                <span class="menu-text">Calendar</span>
-              </a>
+              <router-link to="/admin/orders">
+                <i class="fa fa-shopping-cart"></i>
+                <span>Orders</span>
+              </router-link>
+            </li>
+
+            <li>
+              <router-link to="/admin/profile">
+                <i class="fa fa-user"></i>
+                <span>Profile</span>
+              </router-link>
             </li>
             <li>
-              <a href="#">
-                <i class="fa fa-folder"></i>
-                <span class="menu-text">Examples</span>
+              <a href="#" @click="logout()">
+                <i class="fa fa-power-off"></i>
+                <span>Logout</span>
               </a>
             </li>
           </ul>
@@ -354,7 +264,7 @@
       </div>
     </nav>
     <!-- page-content  -->
-    <main class="page-content pt-2">
+    <main class="pt-2">
       <div id="overlay" class="overlay"></div>
       <div class="container-fluid p-5">
         <div class="row">
@@ -377,6 +287,11 @@ import { fb } from "../firebase";
 
 export default {
   name: "Admin",
+  data() {
+    return {
+      name: "",
+    };
+  },
   components: {},
   methods: {
     closeSidebar() {
@@ -393,5 +308,13 @@ export default {
         });
     },
   },
+  created() {
+    var user = fb.auth().currentUser;
+    this.name = user.email;
+  },
 };
 </script>
+<style lang="sass" scoped>
+.container-fluid
+  height: 100% !important,
+</style>

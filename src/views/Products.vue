@@ -34,7 +34,7 @@
               <th>modify</th>
             </thead>
             <tbody>
-              <tr v-for="product in products" :key="product.tag">
+              <tr v-for="product in products" :key="product.id">
                 <td>
                   {{ product.name }}
                 </td>
@@ -137,9 +137,26 @@
                       <label for="product_image">Product Images</label>
                       <input
                         type="file"
-                        @change="uploadImage()"
+                        @change="uploadImage"
                         class="form-control"
                       />
+                    </div>
+                    <div class="form-group d-flex">
+                      <div
+                        class="p-1"
+                        v-for="(image, index) in product.images"
+                        :key="image"
+                      >
+                        <div class="img-wrap">
+                          <img width="80px" height="80px" :src="image" alt="" />
+                          <span
+                            class="delete-img"
+                            @click="deleteImage(image, index)"
+                          >
+                            x
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -178,7 +195,7 @@
 </template>
 
 <script>
-import { db } from "../firebase";
+import { db, fb } from "../firebase";
 import { VueEditor } from "vue2-editor";
 
 export default {
@@ -198,7 +215,7 @@ export default {
         name: null,
         price: null,
         tags: [],
-        image: null,
+        images: [],
         description: null,
       },
       modal: null,
@@ -260,8 +277,8 @@ export default {
               "Your file has been deleted.",
               "success"
             );
-            console.log(doc[".key"]);
-            this.$firestore.products.doc(doc[".key"]).delete();
+            console.log(doc.id);
+            this.$firestore.products.doc(doc.id).delete();
           } else if (
             /* Read more about handling dismissals below */
             result.dismiss === window.Swal.DismissReason.cancel
@@ -274,13 +291,58 @@ export default {
           }
         });
     },
-    readData() {},
+    uploadImage(e) {
+      if (e.target.files[0]) {
+        let file = e.target.files[0];
+        console.log(file);
+        var storageRef = fb
+          .storage()
+          .ref("products/" + Math.random() + "_" + file.name);
+
+        let uploadTask = storageRef.put(file);
+
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            console.log(snapshot);
+          },
+          (error) => {
+            window.$("#loginError").modal("show");
+            console.log(error);
+          },
+          () => {
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+              this.product.images.push(downloadURL);
+            });
+          }
+        );
+      }
+    },
+    deleteImage(img, index) {
+      let image = fb.storage().refFRomURL(img);
+
+      this.product.images.splice(index, 1);
+      image
+        .delete()
+        .then(function () {
+          console.log("deleted" + "");
+        })
+        .catch(function (error) {
+          console.log(error + "");
+        });
+    },
     addProduct() {
       this.$firestore.products.add(this.product);
       window.$("#product").modal("hide");
     },
     reset() {
-      Object.assign(this.$data, this.$options.data.apply(this));
+      this.product = {
+        name: null,
+        price: null,
+        tags: [],
+        images: [],
+        description: null,
+      };
     },
   },
 };
@@ -288,4 +350,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.img-wrap {
+  position: relative;
+}
+.img-wrap span.delete-img {
+  position: absolute;
+  top: -12px;
+  left: -2px;
+}
+.img-wrap span.delete-img:hover {
+  cursor: pointer;
+}
 </style>

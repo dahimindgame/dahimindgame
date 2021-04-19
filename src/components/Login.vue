@@ -211,7 +211,7 @@
 
 
 <script>
-import { fb } from "../firebase";
+import { fb, db } from "../firebase";
 
 export default {
   components: {},
@@ -233,9 +233,11 @@ export default {
       fb.auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((user) => {
-          user;
+          window.$("#login").modal("hide");
+          db.collection("profiles").doc(user.user.uid).set({
+            name: this.name,
+          });
           this.$router.replace("admin");
-          console.log(user);
         })
         .catch(function (error) {
           var errorCode = error.code;
