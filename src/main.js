@@ -28,6 +28,13 @@ Vue.use(VueFirestore)
 import Swal from 'sweetalert2'
 window.Swal = Swal;
 
+import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 //Vue.component('Navbar', require('./components/Navbar.vue').default);
 Vue.config.productionTip = false;
