@@ -24,7 +24,6 @@
     "vue": "^2.6.11",
     "vue-bootstrap-slider": "^2.1.8",
     "vue-carousel": "^0.18.0",
-    "vue-carousel-3d": "^1.0.1",
     "vue-firestore": "^0.3.30",
     "vue-router": "^3.2.0",
     "vue2-editor": "^2.10.2",

@@ -4,9 +4,18 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTwitter, faFacebook, faYoutube, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {
+  library
+} from '@fortawesome/fontawesome-svg-core';
+import {
+  faTwitter,
+  faFacebook,
+  faYoutube,
+  faInstagram
+} from '@fortawesome/free-brands-svg-icons';
+import {
+  FontAwesomeIcon
+} from '@fortawesome/vue-fontawesome';
 library.add(faTwitter, faFacebook, faYoutube, faInstagram);
 
 import 'bootstrap';
@@ -15,17 +24,19 @@ import 'popper.js';
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 
-import Carousel3d from 'vue-carousel-3d'
-
-Vue.use(Carousel3d)
-
-Vue.use(VueFirestore,{
-  key:'id',
-  enumerable:true
+Vue.use(VueFirestore, {
+  key: 'id',
+  enumerable: true
 })
 
+
+import VueCarousel from 'vue-carousel';
+Vue.use(VueCarousel);
+
 import './assets/app.scss';
-import {fb} from "./firebase";
+import {
+  fb
+} from "./firebase";
 
 import VueFirestore from 'vue-firestore';
 Vue.use(VueFirestore)
@@ -33,7 +44,10 @@ Vue.use(VueFirestore)
 import Swal from 'sweetalert2'
 window.Swal = Swal;
 
-import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
+import {
+  BootstrapVue,
+  IconsPlugin
+} from 'bootstrap-vue';
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
@@ -46,17 +60,15 @@ Vue.config.productionTip = false;
 
 let app = '';
 
-fb.auth().onAuthStateChanged(function(user){
-  user;
-  if(!app){
-    new Vue({
-      router,
-      store,
-      render: (h) => h(App),
-    }).$mount("#app");
+fb.auth().onAuthStateChanged(function (user) {
+    user;
+    if (!app) {
+      new Vue({
+        router,
+        store,
+        render: (h) => h(App),
+      }).$mount("#app");
+    }
   }
-}
 
 );
-
-

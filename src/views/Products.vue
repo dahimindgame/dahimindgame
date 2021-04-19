@@ -238,6 +238,7 @@ export default {
       this.tag = "";
     },
     addNew() {
+      this.reset();
       this.modal = "new";
       window.$("#product").modal("show");
     },
@@ -294,7 +295,7 @@ export default {
     uploadImage(e) {
       if (e.target.files[0]) {
         let file = e.target.files[0];
-        console.log(file);
+
         var storageRef = fb
           .storage()
           .ref("products/" + Math.random() + "_" + file.name);
@@ -304,10 +305,9 @@ export default {
         uploadTask.on(
           "state_changed",
           (snapshot) => {
-            console.log(snapshot);
+            snapshot;
           },
           (error) => {
-            window.$("#loginError").modal("show");
             console.log(error);
           },
           () => {

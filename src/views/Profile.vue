@@ -168,7 +168,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-4">
                   <div class="form-group">
                     <input
                       type="file"
@@ -184,6 +184,17 @@
                       type="submit"
                       value="Save Changes"
                       class="btn btn-primary w-100"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input
+                      type="button"
+                      @click="resetPassword"
+                      value="Reset Password"
+                      class="btn btn-success w-100"
                     />
                   </div>
                 </div>
@@ -234,6 +245,15 @@ export default {
     };
   },
   methods: {
+    resetPassword() {
+      const auth = fb.auth();
+      auth.sendPasswordAndResetEmail(auth.currentUser.email).then( () => {
+        console.log("Sent");
+      }).cath((error) =>{
+        console.log("Not Sent" + error);
+      });
+    },
+
     updateProfile() {
       this.$firestore.profile.update(this.profile);
     },
