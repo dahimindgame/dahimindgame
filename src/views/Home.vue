@@ -1,11 +1,13 @@
 <template>
-  <div class="home">
-    <Navbar></Navbar>
-    <Login></Login>
-    <LoginError></LoginError>
-    <MainSlide></MainSlide>
-    <ComSlide></ComSlide>
-    <Footer></Footer>
+  <div class="mainHome">  
+    <div class="home">
+      <Navbar></Navbar>
+      <Login></Login>
+      <LoginError></LoginError>
+      <MainSlide></MainSlide>
+      <ComSlide></ComSlide>
+      <Footer></Footer>
+    </div>
   </div>
 </template>
 
@@ -34,6 +36,20 @@ export default {
 <style>
   .home{
     background-color: #f0f7fd;
+    min-width: 20px;
+    max-width: 1240px;
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .mainHome{
+    background-color: #6ecded;
+    background-image: url(https://parkofideas.com/kidz/demo2/wp-content/uploads/2018/10/clothes-2049536750.jpg);
+    background-position: left top;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
   }
 </style>
 
