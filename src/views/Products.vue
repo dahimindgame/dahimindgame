@@ -42,8 +42,16 @@
                   {{ product.price }}
                 </td>
                 <td>
-                  <button class="btn btn-primary btn-sm">Edit</button>
-                  <button @click="deleteProduct" class="btn btn-warning btn-sm">
+                  <button
+                    class="btn btn-primary btn-sm"
+                    @click="editProduct(product)"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    @click="deleteProduct(product)"
+                    class="btn btn-warning btn-sm"
+                  >
                     Delete
                   </button>
                 </td>
@@ -64,7 +72,12 @@
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="editLabel">Edit Product</h5>
+                <h5 class="modal-title" id="editLabel" v-if="modal == 'new'">
+                  Add Product
+                </h5>
+                <h5 class="modal-title" id="editLabel" v-if="modal == 'edit'">
+                  Edit Product
+                </h5>
                 <button
                   type="button"
                   class="close"
@@ -88,14 +101,7 @@
                     </div>
 
                     <div class="form-group">
-                      <textarea
-                        name="description"
-                        class="form-control"
-                        placeholder="Product description"
-                        v-model="product.description"
-                        cols="30"
-                        rows="10"
-                      ></textarea>
+                      <vue-editor v-model="product.description"> </vue-editor>
                     </div>
                   </div>
                   <!-- product sidebar -->
@@ -114,9 +120,10 @@
 
                     <div class="form-group">
                       <input
+                        @keyup.188="addTag"
                         type="text"
                         placeholder="Product tags"
-                        v-model="product.tag"
+                        v-model="tag"
                         class="form-control"
                       />
                     </div>
@@ -144,8 +151,17 @@
                   @click="addProduct()"
                   type="button"
                   class="btn btn-primary"
+                  v-if="modal == 'new'"
                 >
                   Save changes
+                </button>
+                <button
+                  @click="updateProduct()"
+                  type="button"
+                  class="btn btn-primary"
+                  v-if="modal == 'edit'"
+                >
+                  Apply changes
                 </button>
               </div>
             </div>
@@ -158,11 +174,16 @@
 
 <script>
 import { db } from "../firebase";
+import { VueEditor } from "vue2-editor";
 
 export default {
   name: "Products",
   props: {
     msg: String,
+  },
+
+  components: {
+    VueEditor,
   },
 
   data() {
@@ -171,12 +192,13 @@ export default {
       product: {
         name: null,
         price: null,
-        tag: null,
+        tags: [],
         image: null,
         description: null,
       },
       modal: null,
       activeItem: null,
+      tag: null,
     };
   },
 
@@ -189,12 +211,25 @@ export default {
   created() {},
 
   methods: {
+    addTag() {
+      this.product.tags.push(thia.tag);
+      this.tag = "";
+    },
     addNew() {
+      this.modal = "new";
       window.$("#product").modal("show");
     },
-    updateProduct() {},
-    editProduct() {},
-    deleteProduct() {
+    updateProduct() {
+      this.$firestore.products.doc(this.product.id).update(this.product);
+      window.$("#product").modal("hide");
+    },
+    editProduct(product) {
+      this.modal = "edit";
+      this.product = product;
+      this.activeItem = product[".key"];
+      window.$("#product").modal("show");
+    },
+    deleteProduct(doc) {
       const swalWithBootstrapButtons = window.Swal.mixin({
         customClass: {
           confirmButton: "btn btn-success",
@@ -220,6 +255,8 @@ export default {
               "Your file has been deleted.",
               "success"
             );
+            console.log(doc[".key"]);
+            this.$firestore.products.doc(doc[".key"]).delete();
           } else if (
             /* Read more about handling dismissals below */
             result.dismiss === window.Swal.DismissReason.cancel

@@ -19,6 +19,11 @@ import Carousel3d from 'vue-carousel-3d'
 
 Vue.use(Carousel3d)
 
+Vue.use(VueFirestore,{
+  key:'id',
+  enumerable:true
+})
+
 import './assets/app.scss';
 import {fb} from "./firebase";
 
