@@ -126,6 +126,11 @@
                         v-model="tag"
                         class="form-control"
                       />
+                      <div class="d-flex">
+                        <p v-for="tag in product.tags" :key="tag">
+                          <span class="p-1">{{ tag }}</span>
+                        </p>
+                      </div>
                     </div>
 
                     <div class="form-group">
@@ -212,7 +217,7 @@ export default {
 
   methods: {
     addTag() {
-      this.product.tags.push(thia.tag);
+      this.product.tags.push(this.tag);
       this.tag = "";
     },
     addNew() {
