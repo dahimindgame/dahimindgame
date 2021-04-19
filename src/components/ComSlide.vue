@@ -1,5 +1,5 @@
 <template>
-    <section id="CommentSlide" style="background-color: #414e65" text-align="center" display=block>
+    <section id="CommentSlide" style="background-color: #31acd8" text-align="center" display=block>
       <div class="container">
       <div id="cSlide" class="carousel slide" data-mdb-ride="carousel">
           <div class="carousel-inner">
@@ -79,6 +79,7 @@
     width: 1170px;
     position: relative; 
     padding: 46px 0 51px 0;
+    height: 480px;
   }
 
   .thumb {
