@@ -19,10 +19,23 @@
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <h5 class="card-title">{{ product.name }}</h5>
-                <h5 class="card-priceS">{{ product.price | currency }}</h5>
+                <h5 class="card-priceS">
+                  {{
+                    product.price
+                      | currency("TL", 0, {
+                        symbolOnLeft: false,
+                        spaceBetweenAmountAndSymbol: true,
+                      })
+                  }}
+                </h5>
               </div>
 
-              <a href="#" class="btn btn-primary">Add to Cart</a>
+              <addToCart
+                :image="getImage(product.images)"
+                :product-id="product.id"
+                :name="product.name"
+                :price="product.price"
+              />
             </div>
           </div>
         </div>
@@ -43,6 +56,13 @@ export default {
       products: [],
     };
   },
+
+  methods: {
+    getImage: function (images) {
+      return images[0];
+    },
+  },
+
   firestore() {
     return {
       products: db.collection("products"),

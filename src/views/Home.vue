@@ -8,6 +8,7 @@
       <ProductList></ProductList>
       <ComSlide></ComSlide>
       <Footer></Footer>
+      <miniCart />
     </div>
   </div>
 </template>
