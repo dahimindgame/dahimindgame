@@ -20,9 +20,18 @@ export default new Vuex.Store({
 
       }
 
+      this.commit('saveData');
+    },
 
+    saveData(state) {
+      console.log(JSON.stringify(state.cart));
+      window.localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
 
-
+    removeFromCart(state, item) {
+      let itemPosition = state.cart.indexOf(item);
+      state.cart.splice(itemPosition, 1);
+      this.commit('saveData');
     }
   },
   actions: {},

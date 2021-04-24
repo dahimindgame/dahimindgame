@@ -1,8 +1,8 @@
 <template>
   <div class="mainHome">
     <div class="home">
-      <Navbar></Navbar>
-      <Login></Login>
+      <navbar />
+      <login />
       <LoginError></LoginError>
       <MainSlide></MainSlide>
       <ProductList></ProductList>
@@ -14,9 +14,7 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-import Login from "@/components/Login.vue";
 import LoginError from "@/components/LoginError.vue";
 import ComSlide from "@/components/ComSlide.vue";
 import MainSlide from "@/components/MainSlide.vue";
@@ -25,9 +23,7 @@ import ProductList from "@/sections/ProductList.vue";
 export default {
   name: "Home",
   components: {
-    Navbar,
     Footer,
-    Login,
     LoginError,
     ComSlide,
     MainSlide,

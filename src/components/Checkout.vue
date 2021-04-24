@@ -1,7 +1,7 @@
 <template>
-  <div class="checkout">
+  <div class="chekout">
     <navbar></navbar>
-
+    <login />
     <div class="container mt-5 pt-5">
       <div class="row">
         <div class="col-md-8">
@@ -34,13 +34,25 @@
             </li>
           </ul>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <p>Total Price : {{ this.$store.getters.totalPrice | currency }}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      complete: false,
+      stripeOptions: {
+        // see https://stripe.com/docs/stripe.js#element-options for details
+      },
+    };
+  },
+};
 </script>
 
 

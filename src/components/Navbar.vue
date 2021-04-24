@@ -14,25 +14,18 @@
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item azure">
-            <a
-              class="nav-link"
-              data-toggle="modal"
-              data-target="#login"
-              href="#"
-              ><i class="fa fa-sign-in-alt" aria-hidden="true"></i> Giriş</a
+            <a class="nav-link" href="/"
+              ><i class="fa fa-sign-in-alt" aria-hidden="true"></i> Ana Sayfa</a
             >
           </li>
           <li class="nav-item azure">
-            <a
-              class="nav-link"
-              data-toggle="modal"
-              data-target="#loginError"
-              href="#"
-              ><i class="fa fa-user" aria-hidden="true"></i> Kayıt Ol</a
+            <a class="nav-link" data-toggle="modal" data-target="#login"
+              ><i class="fa fa-sign-in-alt" aria-hidden="true"></i> Giriş /
+              Kayıt Ol</a
             >
           </li>
           <li class="nav-item azure">
-            <a class="nav-link" href="#" @click="checkout"
+            <a class="nav-link" data-toggle="modal" @click="checkout"
               ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Sepetim</a
             >
           </li>
